@@ -24,6 +24,37 @@ class Channel:
                      "subscriber_count": self.subscriber_count,
                      "video_count": self.video_count, "self.view_count": self.view_count}
 
+    def __str__(self):
+        return f"'{self.title} ({self.url})'"
+
+    def __add__(self, other):
+        """Возвращает сумму подписчиков двух каналов"""
+        return int(self.subscriber_count) + int(other.subscriber_count)
+
+    def __sub__(self, other):
+        """Возвращает разность подписчиков двух каналов"""
+        return int(self.subscriber_count) - int(other.subscriber_count)
+
+    def __gt__(self, other):
+        """Возвращает True, если у первого канала количество подписчиков больше, чем у второго канала """
+        return int(self.subscriber_count) > int(other.subscriber_count)
+
+    def __ge__(self, other):
+        """Возвращает True, если у первого канала количество подписчиков больше или равно, чем у второго канала """
+        return int(self.subscriber_count) >= int(other.subscriber_count)
+
+    def __lt__(self, other):
+        """Возвращает True, если у первого канала количество подписчиков меньше, чем у второго канала"""
+        return int(self.subscriber_count) < int(other.subscriber_count)
+
+    def __le__(self, other):
+        """Возвращает True, если у первого канала количество подписчиков меньше или равно, чем у второго канала"""
+        return int(self.subscriber_count) <= int(other.subscriber_count)
+
+    def __eq__(self, other):
+        """Возвращает True, если у первого канала количество подписчиков равно количеству подписчиков второго канала"""
+        return int(self.subscriber_count) == int(other.subscriber_count)
+
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
         response = self.youtube.channels().list(
